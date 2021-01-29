@@ -13,9 +13,9 @@ class Story(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     date_created = models.DateTimeField(default=datetime.now)
     date_modified = models.DateTimeField(default=datetime.now) 
-    status = models.BooleanField(default=False, null=False)
+    status = models.BooleanField(default=False)
     lock_time = models.DateTimeField(null=True, blank=True)
-    active_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    active_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     
 
 
