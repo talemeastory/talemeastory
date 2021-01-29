@@ -14,7 +14,7 @@ class Story(models.Model):
     date_created = models.DateTimeField(default=datetime.now)
     date_modified = models.DateTimeField(default=datetime.now) 
     status = models.BooleanField(default=False, null=False)
-    lock_time = models.DateTimeField(null=True)
+    lock_time = models.DateTimeField(null=True, blank=True)
     active_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     
 
