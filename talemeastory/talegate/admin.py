@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import StoryBook, Story
+from .models import StoryBook, Story, Excerpt
 
 
 # Register your models here.
@@ -10,4 +10,8 @@ class StoryBookAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Excerpt)
+class ExcerptAdmin(admin.ModelAdmin):
     pass

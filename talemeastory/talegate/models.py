@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import Truncator
 from datetime import datetime
 from django.utils.text import slugify
 
@@ -14,7 +15,7 @@ class StoryBook(models.Model):
     slug = models.SlugField(unique=True, blank=True)
 
     def __str__(self):
-        return '{}'.format(self.title)
+        return f'{self.title}'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -24,16 +25,30 @@ class StoryBook(models.Model):
 class Story(models.Model):
 
     title = models.CharField(max_length=30)
-    storyBook = models.ForeignKey(StoryBook, blank=True, null=True, on_delete=models.SET_NULL)
+    story_book = models.ForeignKey(StoryBook, blank=True, null=True, on_delete=models.SET_NULL)
     slug = models.SlugField(unique=True, blank=True)
     owner = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
-    text = models.CharField(max_length=255)
+    text = models.CharField(max_length=255, null=True, blank=True)
     date_created = models.DateTimeField(default=datetime.now)
     modified = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
-        return '{}'.format(self.title)
+        return f'{self.title}'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Story, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'stories'
+
+
+class Excerpt(models.Model):
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    story = models.ForeignKey(Story, on_delete=models.CASCADE)
+    text = models.CharField(max_length=128)
+    created = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return f'{self.author} - {Truncator(self.text).words(num=7)}'
