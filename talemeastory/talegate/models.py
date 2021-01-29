@@ -20,10 +20,10 @@ class Story(models.Model):
 
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.prompt}'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.prompt)
         super(Story, self).save(*args, **kwargs)
 
     class Meta:
