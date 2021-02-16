@@ -12,6 +12,14 @@ class ExcerptSerializer(serializers.ModelSerializer):
 class StorySerializer(serializers.ModelSerializer):
 
     excerpt_set = ExcerptSerializer(many=True)
+    text = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_text(instance):
+        text = ''
+        for e in instance.excerpt_set.all():
+            text += e.text
+        return text
 
     class Meta:
         model = Story

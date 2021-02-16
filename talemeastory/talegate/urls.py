@@ -7,4 +7,7 @@ router = DefaultRouter()
 router.register(r'stories', views.StoryViewSet)
 router.register(r'excerpts', views.ExcerptViewSet)
 
+urlpatterns = [
+]
+
 urlpatterns = router.urls
