@@ -23,7 +23,7 @@ def pull_request(request):
     digest = hmac.HMAC(github_pr_key, request.stream.body, 'sha256')
     digest_output = 'sha256=' + digest.hexdigest()
     if hmac.compare_digest(digest_output, request.stream.headers['X-Hub-Signature-256']):
-        if request.data.get('action') == 'closed' and request.data.get('merged'):
+        if request.data['action'] == 'closed' and request.data['pull_request']['merged']:
             subprocess.run(["git", "pull"])
             subprocess.run(["sudo", "systemctl", "restart", "talemeastory"])
             return Response()
