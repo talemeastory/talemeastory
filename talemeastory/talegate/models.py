@@ -9,7 +9,7 @@ from django.utils.text import slugify
 
 class Story(models.Model):
     
-    prompt = models.CharField(max_length=128)
+    title = models.CharField(max_length=128)
     slug = models.SlugField(unique=True, blank=True)
     date_created = models.DateTimeField(default=datetime.now)
     date_modified = models.DateTimeField(default=datetime.now) 
@@ -18,10 +18,10 @@ class Story(models.Model):
     active_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.prompt}'
+        return f'{self.title}'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.prompt)
+        self.slug = slugify(self.title)
         super(Story, self).save(*args, **kwargs)
 
     class Meta:
