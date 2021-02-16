@@ -24,7 +24,8 @@ def pull_request(request):
     digest_output = 'sha256=' + digest.hexdigest()
     if hmac.compare_digest(digest_output, request.stream.headers['X-Hub-Signature-256']):
         if request.data.get('action') == 'closed' and request.data.get('merged'):
-            subprocess.run(["git", "pull"])
-            subprocess.run(["sudo", "systemctl", "restart", "talemeastory"])
-            return Response()
+            subprocess.call(settings.GITHUB_PULL_REPO, shell=True)
+            subprocess.call(settings.DJANGO_MIGRATE, shell=True)
+            subprocess.call(settings.GUNICORN_SERVER_RESTART, shell=True)
+            return Response('App Deployed.')
     return Response('Nothing to do. Webhook done. Bye.')
