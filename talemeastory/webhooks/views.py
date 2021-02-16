@@ -25,5 +25,6 @@ def pull_request(request):
     if hmac.compare_digest(digest_output, request.stream.headers['X-Hub-Signature-256']):
         if request.data.get('action') == 'closed' and request.data.get('merged'):
             subprocess.run(["git", "pull"])
+            subprocess.run(["sudo", "systemctl", "restart", "talemeastory"])
             return Response()
     return Response('Nothing to do. Webhook done.')
