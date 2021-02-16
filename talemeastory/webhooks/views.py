@@ -16,7 +16,7 @@ from rest_framework import status
 @api_view(['post'])
 @parser_classes((JSONParser,))
 def pull_request(request):
-    github_pr_key = settings.get('GITHUB_PR_SECRET_KEY')
+    github_pr_key = settings.GITHUB_PR_SECRET_KEY
     if github_pr_key is None:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     github_pr_key = str.encode(github_pr_key)
