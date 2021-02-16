@@ -23,4 +23,4 @@ class StorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Story
-        fields = '__all__'
+        exclude = ('id', )
