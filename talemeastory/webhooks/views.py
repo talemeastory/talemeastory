@@ -27,4 +27,4 @@ def pull_request(request):
             subprocess.run(["git", "pull"])
             subprocess.run(["sudo", "systemctl", "restart", "talemeastory"])
             return Response()
-    return Response('Nothing to do. Webhook done.')
+    return Response('Nothing to do. Webhook done. Bye.')
