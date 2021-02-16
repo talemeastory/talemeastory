@@ -8,6 +8,7 @@ router.register(r'stories', views.StoryViewSet)
 router.register(r'excerpts', views.ExcerptViewSet)
 
 urlpatterns = [
+    path('', views.index),
 ]
 
-urlpatterns = router.urls
+urlpatterns += router.urls

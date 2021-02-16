@@ -3,6 +3,7 @@ import random
 from django.db.models import Max
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
 from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view, action
@@ -13,7 +14,11 @@ from .serializers import *
 
 
 def index(request):
-    return HttpResponse('Hello, This is Edwin and Sergios multimillion dollar idea <3')
+    template = loader.get_template('talegate/index.html')
+    context = {
+
+    }
+    return HttpResponse(template.render(context, request))
 
 
 class StoryViewSet(mixins.ListModelMixin,
