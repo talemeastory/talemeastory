@@ -18,6 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('api/', include('talegate.urls')),
+    path('webhooks/', include('webhooks.urls')),
     path('admin/', admin.site.urls),
     path('', admin.site.urls),
 ]
