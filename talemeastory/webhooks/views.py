@@ -25,4 +25,4 @@ def pull_request(request):
         if request.data.get('action') == 'closed' and request.data.get('merged'):
             subprocess.run(["git", "pull"])
             return Response()
-    return Response('Nothing to do.')
+    return Response('Nothing to do. Webhook done.')
