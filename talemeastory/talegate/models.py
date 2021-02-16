@@ -34,7 +34,7 @@ class Excerpt(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
-    text = models.CharField(max_length=255)
+    text = models.TextField(max_length=255)
     created = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
