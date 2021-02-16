@@ -6,7 +6,7 @@ class ExcerptSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Excerpt
-        fields = '__all__'
+        exclude = ('id', )
 
 
 class StorySerializer(serializers.ModelSerializer):
