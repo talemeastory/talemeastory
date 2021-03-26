@@ -7,6 +7,7 @@ from django.template import loader
 
 from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view, action
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .serializers import *
@@ -42,6 +43,7 @@ class ExcerptViewSet(viewsets.ModelViewSet):
     """
     ViewSet for the Excerpt model
     """
+    permission_classes = [IsAuthenticated]
     queryset = Excerpt.objects.all()
     serializer_class = ExcerptSerializer
 
