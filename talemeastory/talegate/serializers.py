@@ -18,9 +18,9 @@ class StorySerializer(serializers.ModelSerializer):
     def get_text(instance):
         text = ''
         for e in instance.excerpt_set.all():
-            text += e.text
+            text += " " + e.text
         return text
 
     class Meta:
         model = Story
-        exclude = ('id', 'slug', )
+        exclude = ('slug', )
