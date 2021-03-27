@@ -22,9 +22,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-class StoryViewSet(mixins.ListModelMixin,
-                   mixins.RetrieveModelMixin,
-                   viewsets.GenericViewSet):
+class StoryViewSet(viewsets.ModelViewSet):
     """
     ViewSet for the Story model
     """
@@ -43,7 +41,6 @@ class ExcerptViewSet(viewsets.ModelViewSet):
     """
     ViewSet for the Excerpt model
     """
-    permission_classes = [IsAuthenticated]
     queryset = Excerpt.objects.all()
     serializer_class = ExcerptSerializer
 
