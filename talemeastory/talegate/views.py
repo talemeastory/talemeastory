@@ -41,7 +41,6 @@ class ExcerptViewSet(viewsets.ModelViewSet):
     """
     ViewSet for the Excerpt model
     """
-    permission_classes = [IsAuthenticated]
     queryset = Excerpt.objects.all()
     serializer_class = ExcerptSerializer
 
