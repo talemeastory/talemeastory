@@ -22,9 +22,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-class StoryViewSet(mixins.ListModelMixin,
-                   mixins.RetrieveModelMixin,
-                   viewsets.GenericViewSet):
+class StoryViewSet(viewsets.ModelViewSet):
     """
     ViewSet for the Story model
     """
