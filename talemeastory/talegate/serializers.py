@@ -11,7 +11,7 @@ class ExcerptSerializer(serializers.ModelSerializer):
 
 class StorySerializer(serializers.ModelSerializer):
 
-    excerpt_set = ExcerptSerializer(many=True)
+    excerpt_set = ExcerptSerializer(many=True, required=False)
     text = serializers.SerializerMethodField()
 
     @staticmethod
