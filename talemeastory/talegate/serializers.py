@@ -10,7 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ExcerptSerializer(serializers.ModelSerializer):
-    author = UserSerializer(required=False)
+
+    author_instance = UserSerializer(source='author', required=False)
 
     class Meta:
         model = Excerpt
