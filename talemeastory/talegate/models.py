@@ -30,7 +30,7 @@ class Story(models.Model):
 
 class Excerpt(models.Model):
 
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
     text = models.TextField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
