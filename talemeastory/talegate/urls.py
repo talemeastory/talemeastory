@@ -6,6 +6,7 @@ from . import views
 router = DefaultRouter()
 router.register(r'stories', views.StoryViewSet)
 router.register(r'excerpts', views.ExcerptViewSet)
+router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     path('', views.index),

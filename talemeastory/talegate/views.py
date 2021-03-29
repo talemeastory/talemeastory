@@ -45,6 +45,14 @@ class ExcerptViewSet(viewsets.ModelViewSet):
     serializer_class = ExcerptSerializer
 
 
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for the Story model
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
 def get_random_story():
     max_pk = Story.objects.all().aggregate(max_pk=Max('id'))['max_pk']
     while True:
