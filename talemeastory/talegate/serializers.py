@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ExcerptSerializer(serializers.ModelSerializer):
-
+    text = serializers.CharField(trim_whitespace=False)
     author_instance = UserSerializer(source='author', required=False)
 
     class Meta:
@@ -20,6 +20,7 @@ class ExcerptSerializer(serializers.ModelSerializer):
 
 class StorySerializer(serializers.ModelSerializer):
 
+    active_author_instance = UserSerializer(source='active_author', required=False)
     excerpt_set = ExcerptSerializer(many=True, required=False)
     text = serializers.SerializerMethodField()
 
