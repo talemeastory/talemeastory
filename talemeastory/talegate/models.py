@@ -16,6 +16,7 @@ class Story(models.Model):
     status = models.BooleanField(default=False)
     lock_time = models.DateTimeField(null=True, blank=True)
     active_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    anonymous_name = models.CharField(max_length=48, null=True, blank=True)
 
     def __str__(self):
         return f'{self.title}'
@@ -34,6 +35,7 @@ class Excerpt(models.Model):
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
     text = models.TextField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
+    anonymous_name = models.CharField(max_length=48, null=True, blank=True)
 
     class Meta:
         ordering = ('created',)
