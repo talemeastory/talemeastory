@@ -36,6 +36,7 @@ class Excerpt(models.Model):
     text = models.TextField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     anonymous_name = models.CharField(max_length=48, null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         ordering = ('created',)
