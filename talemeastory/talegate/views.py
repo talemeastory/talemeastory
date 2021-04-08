@@ -52,10 +52,12 @@ class ExcerptViewSet(viewsets.ModelViewSet):
 
         serializer.is_valid(raise_exception=True)
         location = request.geolocation
+        print(location)
         geo = location['geo']
         geolocator = Nominatim(user_agent="talegate")
         location2 = geolocator.reverse(f'${geo["latitude"]}, ${geo["longitude"]}')
-        serializer.validated_data['location'] = location2.address
+        print(location2)
+        serializer.validated_data['location'] = geo["latitude"] + ", " + geo["longitude"]
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
