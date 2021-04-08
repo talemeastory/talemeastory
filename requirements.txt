@@ -3,4 +3,5 @@ djangorestframework>=3.9.2,<=3.12.2
 psycopg2
 gunicorn
 python-dotenv
-django-cors-headers 
+django-cors-headers
+django-ip-geolocation
