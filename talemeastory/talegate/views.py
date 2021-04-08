@@ -9,8 +9,10 @@ from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import api_view, action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from geopy.geocoders import Nominatim
 
 from .serializers import *
+
 from django_ip_geolocation.decorators import with_ip_geolocation
 # Create your views here.
 
@@ -50,7 +52,10 @@ class ExcerptViewSet(viewsets.ModelViewSet):
 
         serializer.is_valid(raise_exception=True)
         location = request.geolocation
-        serializer.validated_data['location'] = (location['continent'] if location['continent'] else 'No continent') + ", " + (location['county']['name'] if location['county']['name'] else 'No county')
+        geo = location['geo']
+        geolocator = Nominatim(user_agent="talegate")
+        location2 = geolocator.reverse(f'${geo["latitude"]}, ${geo["longitude"]}')
+        serializer.validated_data['location'] = location2.address
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
