@@ -5,12 +5,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import api_view, action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from geopy.geocoders import Nominatim
 
 from .serializers import *
+
+from django_ip_geolocation.decorators import with_ip_geolocation
 # Create your views here.
 
 
@@ -43,6 +46,22 @@ class ExcerptViewSet(viewsets.ModelViewSet):
     """
     queryset = Excerpt.objects.all()
     serializer_class = ExcerptSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        location = request.geolocation
+        print(location)
+        geo = location['geo']
+        geolocator = Nominatim(user_agent="talegate")
+        location2 = geolocator.reverse(f'${geo["latitude"]}, ${geo["longitude"]}')
+        print(location2)
+        serializer.validated_data['location'] = geo["latitude"] + ", " + geo["longitude"]
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
