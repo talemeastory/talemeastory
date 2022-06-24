@@ -1,0 +1,15 @@
+name: Build and Push
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [master]
+jobs:
+  docker_build:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SECRET_KEY: test-key-change
+
+    steps:
+    - uses: actions/checkout@v3
