@@ -27,7 +27,7 @@ def index(request):
 
 class StoryViewSet(viewsets.ModelViewSet):
     """
-    ViewSet for the Story model
+    ViewSet for the Story models
     """
     queryset = Story.objects.all()
     serializer_class = StorySerializer
