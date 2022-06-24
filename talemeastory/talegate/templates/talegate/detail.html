@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Yarnin'it | Build stories together.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css"
+          integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo/favicon.ico' %}"/>
+</head>
+<body>
+<img height="128" alt="Yarninit site logo." src="{% static 'images/logo/YarninitLogoLong.svg' %}">
+<br>
+
+<div class="yarn container">
+
+
+    <a href="#" class="yarn-title">{{ story.title }}</a>
+    <article class="yarn-article">
+        <p class="yarn-text">{{ story.text }}</p>
+        <a href="#">continue story</a>
+    </article>
+    <br>
+    <div style="max-width: 100%; display: flex">
+    <textarea maxlength="100"
+              onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"
+               rows="3"></textarea>
+        </div>
+    <br>
+    <div class="yarn-controls">
+        <button class="yarn-button" onclick="location.reload()">Submit</button>
+    </div>
+</div>
+
+</body>
+
+<style>
+    html, body {
+        height: 100%;
+        background-color: #FF7578;
+        text-align: center;
+        color: #F2EDDF;
+    }
+
+    a {
+        font-size: 1.5em;
+        color:#F2EDDF;
+    }
+
+    .yarn.container {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    textarea {
+        font-size: 1.5em;
+        padding: 0.5em;
+        resize: none;
+        border-radius:0.12em;
+        background-color: #F2EDDF;
+        border:0.2em solid #F2EDDF;
+        color:#FF7578;
+        transition: all 0.2s;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        width: 100%;
+    }
+
+
+    *:focus {
+        outline: none;
+    }
+
+    textarea:focus {
+        box-shadow: none;
+        outline: none;
+        transition: all 0.2s;
+    }
+
+    button.yarn-button {
+        display:inline-block;
+        padding:0.35em 1.2em;
+        border:0.2em solid #F2EDDF;
+        margin:0 0.3em 0.3em 0;
+        border-radius:0.12em;
+        box-sizing: border-box;
+        text-decoration:none;
+        font-family:'Roboto',sans-serif;
+        font-weight:300;
+        font-size: 2em;
+        color:#F2EDDF;
+        text-align:center;
+        transition: all 0.2s;
+        background-color: #FF7578;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        margin: 0;
+
+    }
+
+    button.yarn-button:active {
+        display:inline-block;
+        padding:0.35em 1.2em;
+        border:0.2em solid #F2EDDF;
+        margin:0 0.3em 0.3em 0;
+        border-radius:0.12em;
+        box-sizing: border-box;
+        text-decoration:none;
+        font-family:'Roboto',sans-serif;
+        font-weight:300;
+        font-size: 2em;
+        color:#F2EDDF;
+        text-align:center;
+        transition: all 0.2s;
+        background-color: #FF7578;
+        box-shadow: none;
+    }
+
+    p.yarn-text {
+        font-size: 1.5em;
+        color:#F2EDDF;
+        display: contents;
+    }
+
+    .yarn-title {
+        display: block;
+        margin: 1em 0em;
+        font-size: 1.75em;
+    }
+
+    h1.yarn-title, h2.yarn-title, h3.yarn-title, h4.yarn-title {
+        color: #F2EDDF;
+        font-size: 1.75em;
+        text-decoration: underline;
+    }
+
+    article.yarn-article {
+        min-height: 80px;
+        color:#F2EDDF;
+        {#max-width: 50vw;#}
+        text-align: left;
+        margin: auto;
+    }
+
+    article.yarn-article a {
+        font-size: 1.25em;
+        color:#F2EDDF;
+        display: contents;
+    }
+
+    .yarn-controls {
+        text-align: right;
+    }
+
+    /* Color Theme Swatches in Hex */
+.Copy-of-color-themeStory---Inscrições-abertas-1-hex { color: #389BA6; }
+.Copy-of-color-themeStory---Inscrições-abertas-2-hex { color: #49BFBF; }
+.Copy-of-color-themeStory---Inscrições-abertas-3-hex { color: #F2EDDF; }
+.Copy-of-color-themeStory---Inscrições-abertas-4-hex { color: #F2C6B6; }
+.Copy-of-color-themeStory---Inscrições-abertas-5-hex { color: #D96459; }
+
+/* Color Theme Swatches in RGBA */
+.Copy-of-color-themeStory---Inscrições-abertas-1-rgba { color: rgba(56, 155, 166, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-2-rgba { color: rgba(73, 191, 191, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-3-rgba { color: rgba(242, 237, 223, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-4-rgba { color: rgba(242, 198, 182, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-5-rgba { color: rgba(217, 100, 89, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Copy-of-color-themeStory---Inscrições-abertas-1-hsla { color: hsla(186, 49, 43, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-2-hsla { color: hsla(180, 47, 51, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-3-hsla { color: hsla(44, 42, 91, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-4-hsla { color: hsla(16, 69, 83, 1); }
+.Copy-of-color-themeStory---Inscrições-abertas-5-hsla { color: hsla(5, 62, 60, 1); }
+</style>
+
+</html>

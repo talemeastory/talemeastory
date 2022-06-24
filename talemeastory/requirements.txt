@@ -1,0 +1,8 @@
+Django
+djangorestframework
+psycopg2
+gunicorn
+python-dotenv
+django-cors-headers
+boto3
+django-storages

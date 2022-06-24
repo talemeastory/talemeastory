@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14.1
+    environment:
+      - POSTGRES_USER=tmatdev
+      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_DB=tmatdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  redis:
+    image: redis:6-bullseye
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8080:8080
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  postgres_data:
