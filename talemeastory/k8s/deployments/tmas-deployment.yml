@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tmas-app
+  labels:
+    app: tmas
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: tmas
+  template:
+    metadata:
+      labels:
+        app: tmas
+    spec:
+      containers:
+        - image: edwinperea7/webapp:latest
+          name: tmas
+          envFrom:
+          - secretRef:
+              name: tmas-secret
+          - configMapRef:
+              name: tmas-config
+          ports:
+            - containerPort: 8000
+              name: gunicorn

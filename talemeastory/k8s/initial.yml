@@ -1,0 +1,16 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: create the 'taler' user
+      user: name=taler append=yes state=present createhome=yes shell=/bin/bash
+    
+    - name: allow 'taler' to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'taler ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: setup authorized keys for the 'taler' user
+      authorized_key: user=taler key="{{item}}"
+      with_file:
+        - ~/.ssh/id_rsa.pub
