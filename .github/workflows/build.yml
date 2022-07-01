@@ -29,3 +29,21 @@ jobs:
     - name: Push image
       run: |
         docker push edwinperea7/webapp --all-tags
+
+  deploy_to_kubernetes_cluster:
+    name: Deploy to Kubernetes Cluster
+    needs: docker_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Set Kubernetes Context
+        uses: azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBECTL_CONFIG }}
+      - name: Deploy to Cluster
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+        run: |
+          kubectl apply -f ./k8s/deployments/tmas-deployment.yml
